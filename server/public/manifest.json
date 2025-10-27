@@ -1,0 +1,15 @@
+{
+  "name": "Student Buddy Chatbot",
+  "short_name": "StudentBuddy",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "/assets/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

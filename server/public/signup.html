@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Buddy Chatbot — Sign up</title>
+  <link rel="icon" href="/assets/logo.svg">
+  <style>
+    :root{ --bg-1:#ffffff; --bg-2:#000000; --accent:#0ea5e9; --accent-2:#22d3ee; --text:#0b0b0b; --muted:#6b7280; --card-text:#eef2f7 }
+    *{box-sizing:border-box}
+    body{ margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto; background: radial-gradient(900px 400px at 10% 10%, rgba(14,165,233,0.06), transparent), linear-gradient(180deg,var(--bg-1),var(--bg-2)); color:var(--text); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px }
+
+    .page-header{ position:fixed; left:18px; top:18px; display:flex; gap:12px; align-items:center; z-index:50 }
+    .page-header img{ width:44px; height:44px; border-radius:10px; box-shadow: 0 6px 20px rgba(2,8,23,.4); }
+    .page-header .heading{ font-weight:800; font-size:18px }
+    .page-header .tagline{ color:var(--muted); font-size:13px }
+
+    .bg-decor{ position:fixed; right:6%; top:6%; width:460px; height:360px; background: linear-gradient(135deg,var(--accent),var(--accent-2)); filter: blur(56px) saturate(120%); opacity:0.08; border-radius:40% }
+
+    .card{ width:100%; max-width:980px; border-radius:16px; overflow:hidden; display:grid; grid-template-columns:420px 1fr; box-shadow: 0 12px 48px rgba(0,0,0,0.6); background: linear-gradient(180deg, rgba(0,0,0,0.95), rgba(0,0,0,0.95)); border:1px solid rgba(255,255,255,0.03); color:var(--card-text) }
+
+    .brand{ padding:28px; display:flex; flex-direction:column; gap:18px; background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.35)) }
+    .brand .title{ font-size:20px; font-weight:800 }
+    .brand .sub{ color:var(--muted); font-size:13px }
+
+    .formside{ padding:28px }
+    form{ display:flex; flex-direction:column; gap:12px; max-width:420px }
+    label{ font-size:13px; color:var(--muted) }
+    input{ padding:12px 14px; border-radius:10px; border:1px solid #1f2937; background:transparent; color:var(--card-text); font-size:15px }
+    .actions{ display:flex; gap:10px; margin-top:6px }
+    button.primary{ flex:1; background:linear-gradient(90deg,var(--accent),var(--accent-2)); border:0; color:#001018; padding:12px 14px; border-radius:10px; font-weight:700; cursor:pointer }
+    .mutedlink{ color:var(--muted); text-decoration:none; font-size:14px }
+
+    @media (max-width:880px){ .card{ grid-template-columns:1fr } .bg-decor{ display:none } .page-header{ left:12px; top:12px } }
+  </style>
+</head>
+<body>
+  <div class="page-header">
+    <img src="/assets/logo.svg" alt="logo" />
+    <div>
+      <div class="heading">Student Buddy Chatbot</div>
+      <div class="tagline">Study smarter • Plan better • Learn faster</div>
+    </div>
+  </div>
+
+  <div class="bg-decor" aria-hidden="true"></div>
+
+  <div class="card">
+    <div class="brand">
+      <div class="title">Create your account</div>
+      <div class="sub">Join Student Buddy to save your plans, todos and chat history.</div>
+      <div style="margin-top:auto;opacity:0.9;font-size:13px;color:var(--muted)">All accounts are protected with secure hashing.</div>
+    </div>
+
+    <div class="formside">
+      <h3 style="margin:0 0 8px 0">Sign up</h3>
+      <div style="color:var(--muted);margin-bottom:14px">Create an account to start using the chatbot.</div>
+
+      <form id="signupForm">
+        <label for="username">Username</label>
+        <input id="username" type="text" placeholder="Your name" required />
+
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="your email" required />
+
+        <label for="phone">Phone number</label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input id="phone" type="tel" placeholder="+1 555 555 5555" style="flex:1" />
+          <button type="button" id="sendOtpBtn" style="padding:10px 12px;border-radius:8px;border:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#001018;cursor:pointer">Send OTP</button>
+        </div>
+
+        <label for="otp" id="otpLabel" style="display:none">One-time code (OTP)</label>
+        <input id="otp" type="text" placeholder="Enter OTP" style="display:none" />
+
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Choose a password" required />
+
+        <div class="actions">
+          <button type="submit" class="primary">Sign up</button>
+          <a class="mutedlink" href="login.html">Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('signupForm');
+    const sendOtpBtn = document.getElementById('sendOtpBtn');
+    const phoneInput = document.getElementById('phone');
+    const otpInput = document.getElementById('otp');
+    const otpLabel = document.getElementById('otpLabel');
+
+    let resendTimer = null;
+
+    async function sendOtp() {
+      const phone = phoneInput.value.trim();
+      if (!phone) return alert('Enter phone number first');
+      sendOtpBtn.disabled = true;
+      sendOtpBtn.textContent = 'Sending...';
+      try {
+        // Server should implement /api/send-otp to actually send the SMS
+        const res = await fetch('/api/send-otp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ phone }) });
+        let data = { success: false };
+        const ct = res.headers.get('content-type') || '';
+        if (ct.includes('application/json')) data = await res.json();
+        if (data.success) {
+          otpInput.style.display = '';
+          otpLabel.style.display = '';
+          alert('OTP sent. Please check your phone.');
+          startResendCooldown();
+        } else {
+          alert(data.message || 'Failed to send OTP');
+          sendOtpBtn.disabled = false; sendOtpBtn.textContent = 'Send OTP';
+        }
+      } catch (err) {
+        alert('Network error: ' + err.message);
+        sendOtpBtn.disabled = false; sendOtpBtn.textContent = 'Send OTP';
+      }
+    }
+
+    function startResendCooldown(){
+      let sec = 30;
+      sendOtpBtn.disabled = true;
+      sendOtpBtn.textContent = `Resend (${sec}s)`;
+      resendTimer = setInterval(()=>{
+        sec--;
+        if (sec <= 0) { clearInterval(resendTimer); sendOtpBtn.disabled = false; sendOtpBtn.textContent = 'Send OTP'; }
+        else sendOtpBtn.textContent = `Resend (${sec}s)`;
+      }, 1000);
+    }
+
+    sendOtpBtn.addEventListener('click', sendOtp);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = phoneInput.value.trim();
+      const otp = otpInput.value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      try{
+        const payload = { username, email, password, phone, otp };
+        const res = await fetch('/api/signup', { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(payload) });
+        const data = await res.json();
+        if (data.success) { alert('Account created successfully! Please login.'); window.location.href = 'login.html'; }
+        else { alert(data.message || data.error || 'Signup failed'); }
+      }catch(err){ alert('Network error: '+err.message); }
+    });
+  </script>
+</body>
+</html>

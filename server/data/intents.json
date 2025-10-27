@@ -1,0 +1,406 @@
+{
+  "intents": [
+    {
+      "tags": [
+        "greeting"
+      ],
+      "patterns": [
+        "hi",
+        "hello",
+        "hey"
+      ],
+      "responses": [
+        "Hey! How can I help you study today?"
+      ]
+    },
+    {
+      "tags": [
+        "goodbye"
+      ],
+      "patterns": [
+        "bye",
+        "goodbye"
+      ],
+      "responses": [
+        "Bye and good luck!"
+      ]
+    },
+    {
+      "tags": [
+        "help"
+      ],
+      "patterns": [
+        "help",
+        "features"
+      ],
+      "responses": [
+        "I can answer subject questions, provide code snippets, calculate GPA (/gpa), convert units (/convert), manage To-Dos (/todo)."
+      ]
+    },
+    {
+      "tags": [
+        "dsa_array",
+        "dsa"
+      ],
+      "patterns": [
+        "what is array",
+        "explain array",
+        "array example",
+        "array code",
+        "how to array",
+        "array question",
+        "array dsa",
+        "array theory"
+      ],
+      "responses": [
+        "Array is a contiguous collection of elements. Example in Python:\n```python\narr = [1,2,3,4]\nfor x in arr: print(x)\n```"
+      ]
+    },
+    {
+      "tags": [
+        "dsa_linked_list",
+        "dsa"
+      ],
+      "patterns": [
+        "what is linked list",
+        "explain linked list",
+        "linked list example",
+        "linked list code",
+        "how to linked list",
+        "linked list question",
+        "linked list dsa",
+        "linked list theory"
+      ],
+      "responses": [
+        "Linked List is a linear data structure of nodes. Reverse linked list by changing next pointers."
+      ]
+    },
+    {
+      "tags": [
+        "dsa_stack",
+        "dsa"
+      ],
+      "patterns": [
+        "what is stack",
+        "explain stack",
+        "stack example",
+        "stack code",
+        "how to stack",
+        "stack question",
+        "stack dsa",
+        "stack theory"
+      ],
+      "responses": [
+        "Stack is LIFO. Use append/pop in Python list as stack."
+      ]
+    },
+    {
+      "tags": [
+        "dsa_queue",
+        "dsa"
+      ],
+      "patterns": [
+        "what is queue",
+        "explain queue",
+        "queue example",
+        "queue code",
+        "how to queue",
+        "queue question",
+        "queue dsa",
+        "queue theory"
+      ],
+      "responses": [
+        "Queue is FIFO. Use collections.deque in Python for O(1) pushes/pops."
+      ]
+    },
+    {
+      "tags": [
+        "dsa_binary_search",
+        "dsa"
+      ],
+      "patterns": [
+        "what is binary search",
+        "explain binary search",
+        "binary search example",
+        "binary search code",
+        "how to binary search",
+        "binary search question",
+        "binary search dsa",
+        "binary search theory"
+      ],
+      "responses": [
+        "Binary search works on sorted arrays. Complexity O(log n).\n\nExample:\n```python\ndef binary_search(a, x):\n    lo,hi=0,len(a)-1\n    while lo<=hi:\n        m=(lo+hi)//2\n        if a[m]==x: return m\n        if a[m]<x: lo=m+1\n        else: hi=m-1\n    return -1\n```"
+      ]
+    },
+    {
+      "tags": [
+        "dsa_merge_sort",
+        "dsa"
+      ],
+      "patterns": [
+        "what is merge sort",
+        "explain merge sort",
+        "merge sort example",
+        "merge sort code",
+        "how to merge sort",
+        "merge sort question",
+        "merge sort dsa",
+        "merge sort theory"
+      ],
+      "responses": [
+        "MergeSort divides and merges; stable O(n log n)."
+      ]
+    },
+    {
+      "tags": [
+        "os_process",
+        "os"
+      ],
+      "patterns": [
+        "what is process",
+        "explain process",
+        "process example",
+        "process code",
+        "how to process",
+        "process question",
+        "process os",
+        "process theory"
+      ],
+      "responses": [
+        "Process is an executing program with its own memory space."
+      ]
+    },
+    {
+      "tags": [
+        "os_thread",
+        "os"
+      ],
+      "patterns": [
+        "what is thread",
+        "explain thread",
+        "thread example",
+        "thread code",
+        "how to thread",
+        "thread question",
+        "thread os",
+        "thread theory"
+      ],
+      "responses": [
+        "Thread is a lightweight process sharing memory."
+      ]
+    },
+    {
+      "tags": [
+        "os_deadlock",
+        "os"
+      ],
+      "patterns": [
+        "what is deadlock",
+        "explain deadlock",
+        "deadlock example",
+        "deadlock code",
+        "how to deadlock",
+        "deadlock question",
+        "deadlock os",
+        "deadlock theory"
+      ],
+      "responses": [
+        "Deadlock arises when circular wait occurs; handle by prevention, avoidance."
+      ]
+    },
+    {
+      "tags": [
+        "dbms_sql_select",
+        "dbms"
+      ],
+      "patterns": [
+        "what is sql select",
+        "explain sql select",
+        "sql select example",
+        "sql select code",
+        "how to sql select",
+        "sql select question",
+        "sql select dbms",
+        "sql select theory"
+      ],
+      "responses": [
+        "SELECT queries retrieve rows. Example: SELECT name FROM students WHERE marks>80;"
+      ]
+    },
+    {
+      "tags": [
+        "dbms_joins",
+        "dbms"
+      ],
+      "patterns": [
+        "what is joins",
+        "explain joins",
+        "joins example",
+        "joins code",
+        "how to joins",
+        "joins question",
+        "joins dbms",
+        "joins theory"
+      ],
+      "responses": [
+        "INNER, LEFT, RIGHT, FULL joins combine tables based on keys."
+      ]
+    },
+    {
+      "tags": [
+        "cn_osi_model",
+        "cn"
+      ],
+      "patterns": [
+        "what is osi model",
+        "explain osi model",
+        "osi model example",
+        "osi model code",
+        "how to osi model",
+        "osi model question",
+        "osi model cn",
+        "osi model theory"
+      ],
+      "responses": [
+        "OSI has 7 layers: Physical to Application."
+      ]
+    },
+    {
+      "tags": [
+        "cn_tcp_udp",
+        "cn"
+      ],
+      "patterns": [
+        "what is tcp udp",
+        "explain tcp udp",
+        "tcp udp example",
+        "tcp udp code",
+        "how to tcp udp",
+        "tcp udp question",
+        "tcp udp cn",
+        "tcp udp theory"
+      ],
+      "responses": [
+        "TCP is connection-oriented reliable; UDP is connectionless and faster."
+      ]
+    },
+    {
+      "tags": [
+        "python_loops",
+        "python"
+      ],
+      "patterns": [
+        "what is loops",
+        "explain loops",
+        "loops example",
+        "loops code",
+        "how to loops",
+        "loops question",
+        "loops python",
+        "loops theory"
+      ],
+      "responses": [
+        "for and while loops iterate over sequences."
+      ]
+    },
+    {
+      "tags": [
+        "python_functions",
+        "python"
+      ],
+      "patterns": [
+        "what is functions",
+        "explain functions",
+        "functions example",
+        "functions code",
+        "how to functions",
+        "functions question",
+        "functions python",
+        "functions theory"
+      ],
+      "responses": [
+        "def func(args): return ..."
+      ]
+    },
+    {
+      "tags": [
+        "web_html",
+        "web"
+      ],
+      "patterns": [
+        "what is html",
+        "explain html",
+        "html example",
+        "html code",
+        "how to html",
+        "html question",
+        "html web",
+        "html theory"
+      ],
+      "responses": [
+        "Structure web pages using HTML; semantic tags."
+      ]
+    },
+    {
+      "tags": [
+        "web_css",
+        "web"
+      ],
+      "patterns": [
+        "what is css",
+        "explain css",
+        "css example",
+        "css code",
+        "how to css",
+        "css question",
+        "css web",
+        "css theory"
+      ],
+      "responses": [
+        "Style with CSS; use Flexbox/Grid."
+      ]
+    },
+    {
+      "tags": [
+        "python_factorial",
+        "python"
+      ],
+      "patterns": [
+        "python factorial",
+        "factorial python"
+      ],
+      "responses": [
+        "def fact(n):\n    return 1 if n==0 else n*fact(n-1)\n\nprint(fact(5))"
+      ]
+    },
+    {
+      "tags": [
+        "js_add",
+        "javascript"
+      ],
+      "patterns": [
+        "js add numbers",
+        "javascript add"
+      ],
+      "responses": [
+        "function add(a,b){return a+b;} console.log(add(2,3));"
+      ]
+    },
+    {
+      "tags": [
+        "sql_select"
+      ],
+      "patterns": [
+        "sql select example",
+        "select query"
+      ],
+      "responses": [
+        "SELECT name, rollno FROM students WHERE marks > 75;"
+      ]
+    }
+  ],
+  "meta": {
+    "generated_at": "2025-09-06T11:35:18.073387",
+    "count": 23
+  }
+}
